@@ -1,0 +1,11 @@
+.rowC {
+    display: flex;
+    flex-direction: row;
+}
+.left {
+    margin-left: 20px;
+    float: left;
+}
+.right {
+    float: right;
+}
