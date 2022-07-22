@@ -1,0 +1,44 @@
+server:
+  error:
+    include-message: always
+  servlet:
+    contextPath: /api
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: ${mysql.username:user}
+    password: ${mysql.password:MSQL123}
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      hibernate.generate_statistics: true
+      ddl-auto: update
+  servlet:
+    multipart: # Files are uploaded base64 encoded which increases their size by 33%
+      # therefore a 7 MB limit actually allows files of up to 5 MB
+      max-file-size: 7MB
+      max-request-size: 7MB
+
+---
+spring:
+  profiles: server
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    show-sql: false
+
+

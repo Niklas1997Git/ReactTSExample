@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+
+  frontend-db:
+    container_name: frontend-db
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: "db"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "MSQL123"
+      MYSQL_ROOT_PASSWORD: "MSQL123.PW"
+    ports:
+      - "3306:3306"
+
+  frontend-adminer:
+    container_name: frontend-adminer
+    image: adminer
+    ports:
+      - 8000:8080
